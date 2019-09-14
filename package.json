@@ -1,0 +1,18 @@
+{
+  "name": "jimsbot",
+  "version": "1.0.0",
+  "description": "A Discord bot",
+  "main": "JimsBot.js",
+  "scripts": {
+    "start": "node JimsBot.js"
+  },
+  "author": "Josh Hyde",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "node-opus": "^0.3.2",
+    "relevant-urban": "^2.0.0",
+    "yt-search": "^0.4.1",
+    "ytdl-core": "^0.29.7"
+  }
+}
