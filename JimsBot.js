@@ -117,9 +117,17 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
 });
 
 client.on("presenceUpdate", (oldMember, newMember) => {
+  if (!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) {
+    return message.channel.send(
+      `I do not have the **Ban Members** permission in this server. I probably should though because ${newMember.user} is playing Fortnite`
+    );
+  }
+
   if (newMember.presence.game == null) {
     return;
   }
+
+  console.log(newMember.presence.game.name);
 
   if (newMember.presence.game.name == "Fortnite") {
     return newMember
