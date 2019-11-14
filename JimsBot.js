@@ -124,9 +124,21 @@ client.on("presenceUpdate", (oldMember, newMember) => {
   if (newMember.presence.game.name == "Fortnite") {
     return newMember
       .ban()
-      .then(() =>
-        console.log(`Banned ${newMember.user.username} for playing Fortnite`)
-      )
+      .then(() => {
+        let logs = newMessage.guild.channels.find("name", "logs");
+
+        let embed = new Discord.RichEmbed()
+          .setColor("#FF0000")
+          .setTitle("User Banned")
+          .addField(
+            "Banned User: ",
+            `${newMember.user}, ID ${NewMember.user.id}`
+          )
+          .addField("Reason: ", "Playing Fortnite")
+          .setTimestamp();
+
+        logs.send({ embed });
+      })
       .catch(console.error);
   }
 });
