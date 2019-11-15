@@ -122,11 +122,12 @@ client.on("presenceUpdate", (oldMember, newMember) => {
   }
 
   let logs = newMember.guild.channels.find("name", "logs");
+  const game = "Fortnite";
 
   if (newMember.presence.game.name === "Fortnite") {
     if (!newMember.guild.member(client.user).hasPermission("BAN_MEMBERS")) {
       return logs.send(
-        `I do not have the **Ban Members** permission in this server. I probably should though because ${newMember.user} is playing Fortnite`
+        `I do not have the **Ban Members** permission in this server. I probably should though because ${newMember.user} is playing ${game}`
       );
     }
 
@@ -142,7 +143,7 @@ client.on("presenceUpdate", (oldMember, newMember) => {
             "Banned User: ",
             `${newMember.user}, ID ${NewMember.user.id}`
           )
-          .addField("Reason: ", "Playing Fortnite")
+          .addField("Reason: ", `Playing ${game}`)
           .setTimestamp();
 
         logs.send({ embed });
