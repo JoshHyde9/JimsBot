@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (client, message, args) => {
-  let logs = message.guild.channels.find("name", "logs");
+  let logs = message.guild.channels.find(x => x.name === "logs");
 
   if (!message.member.hasPermission("MANAGE_MESSAGES")) {
     return message.channel.send(

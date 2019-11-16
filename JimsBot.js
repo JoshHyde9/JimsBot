@@ -74,7 +74,7 @@ client.on("messageDelete", messageDelete => {
     );
   }
 
-  let logs = messageDelete.guild.channels.find("name", "logs");
+  let logs = messageDelete.guild.channels.find(x => x.name === "logs");
 
   let embed = new Discord.RichEmbed()
     .setColor("#F7699C")
@@ -97,7 +97,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
     );
   }
 
-  let logs = newMessage.guild.channels.find("name", "logs");
+  let logs = newMessage.guild.channels.find(x => x.name === "logs");
 
   if (oldMessage.content !== newMessage.content) {
     let embed = new Discord.RichEmbed()
@@ -121,19 +121,20 @@ client.on("presenceUpdate", (oldMember, newMember) => {
     return;
   }
 
-  let logs = newMember.guild.channels.find("name", "logs");
+  let logs = newMember.guild.channels.find(x => x.name === "logs");
+  const game = "Fortnite";
 
   if (newMember.presence.game.name === "Fortnite") {
     if (!newMember.guild.member(client.user).hasPermission("BAN_MEMBERS")) {
       return logs.send(
-        `I do not have the **Ban Members** permission in this server. I probably should though because ${newMember.user} is playing Fortnite`
+        `I do not have the **Ban Members** permission in this server. I probably should though because ${newMember.user} is playing ${game}`
       );
     }
 
     return newMember
       .ban()
       .then(() => {
-        let logs = newMessage.guild.channels.find("name", "logs");
+        let logs = newMessage.guild.channels.find(x => x.name === "logs");
 
         let embed = new Discord.RichEmbed()
           .setColor("#FF0000")
@@ -142,7 +143,7 @@ client.on("presenceUpdate", (oldMember, newMember) => {
             "Banned User: ",
             `${newMember.user}, ID ${NewMember.user.id}`
           )
-          .addField("Reason: ", "Playing Fortnite")
+          .addField("Reason: ", `Playing ${game}`)
           .setTimestamp();
 
         logs.send({ embed });
