@@ -5,8 +5,7 @@ const fs = require("fs");
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
-const token = config.token;
-const prefix = config.prefix;
+const { token, prefix } = config;
 
 const ownerID = "197955018828152833";
 const active = new Map();
