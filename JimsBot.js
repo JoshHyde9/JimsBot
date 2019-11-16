@@ -74,7 +74,7 @@ client.on("messageDelete", messageDelete => {
     );
   }
 
-  let logs = messageDelete.guild.channels.find("name", "logs");
+  let logs = messageDelete.guild.channels.find(x => x.name === "logs");
 
   let embed = new Discord.RichEmbed()
     .setColor("#F7699C")
@@ -97,7 +97,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
     );
   }
 
-  let logs = newMessage.guild.channels.find("name", "logs");
+  let logs = newMessage.guild.channels.find(x => x.name === "logs");
 
   if (oldMessage.content !== newMessage.content) {
     let embed = new Discord.RichEmbed()
@@ -121,7 +121,7 @@ client.on("presenceUpdate", (oldMember, newMember) => {
     return;
   }
 
-  let logs = newMember.guild.channels.find("name", "logs");
+  let logs = newMember.guild.channels.find(x => x.name === "logs");
   const game = "Fortnite";
 
   if (newMember.presence.game.name === "Fortnite") {
@@ -134,7 +134,7 @@ client.on("presenceUpdate", (oldMember, newMember) => {
     return newMember
       .ban()
       .then(() => {
-        let logs = newMessage.guild.channels.find("name", "logs");
+        let logs = newMessage.guild.channels.find(x => x.name === "logs");
 
         let embed = new Discord.RichEmbed()
           .setColor("#FF0000")

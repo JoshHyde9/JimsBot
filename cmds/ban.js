@@ -13,7 +13,7 @@ exports.run = async (client, message, args) => {
     );
   }
 
-  let logs = message.guild.channels.find("name", "logs");
+  let logs = message.guild.channels.find(x => x.name === "logs");
 
   let user = message.mentions.users.first();
   if (!user) {
