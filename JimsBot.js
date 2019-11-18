@@ -164,6 +164,23 @@ client.on("message", async message => {
     return;
   }
 
+  if (
+    message.content === "owo" ||
+    message.content === "uwu" ||
+    message.content === "rawr" ||
+    message.content === "x3" ||
+    message.content === "nuzzles" ||
+    message.content === "necky" ||
+    message.content === "wecky" ||
+    message.content === "murr" ||
+    message.content === "widdle" ||
+    message.content === "bolgy-wolgy" ||
+    message.content === "bolgy wolgy" ||
+    message.content === "wuzzles"
+  ) {
+    return message.channel.send("UMM WHAT THE FUCK DID YOU JUST SAY FAGGOT???");
+  }
+
   let messageArray = message.content.split(/\s+/g);
   let command = messageArray[0];
   let args = messageArray.slice(1);
