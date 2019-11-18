@@ -75,6 +75,10 @@ client.on("messageDelete", messageDelete => {
 
   let logs = messageDelete.guild.channels.find(x => x.name === "logs");
 
+  if (!logs) {
+    return;
+  }
+
   let embed = new Discord.RichEmbed()
     .setColor("#F7699C")
     .setTitle("Message Deleted")
@@ -97,6 +101,10 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
   }
 
   let logs = newMessage.guild.channels.find(x => x.name === "logs");
+
+  if (!logs) {
+    return;
+  }
 
   if (oldMessage.content !== newMessage.content) {
     let embed = new Discord.RichEmbed()
@@ -122,6 +130,10 @@ client.on("presenceUpdate", (oldMember, newMember) => {
 
   let logs = newMember.guild.channels.find(x => x.name === "logs");
   const game = "Fortnite";
+
+  if (!logs) {
+    return;
+  }
 
   if (newMember.presence.game.name === "Fortnite") {
     if (!newMember.guild.member(client.user).hasPermission("BAN_MEMBERS")) {
