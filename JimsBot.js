@@ -123,45 +123,45 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
   }
 });
 
-client.on("presenceUpdate", (oldMember, newMember) => {
-  if (newMember.presence.game == null) {
-    return;
-  }
+// client.on("presenceUpdate", (oldMember, newMember) => {
+//   if (newMember.presence.game == null) {
+//     return;
+//   }
 
-  let logs = newMember.guild.channels.find(x => x.name === "logs");
-  const game = "Fortnite";
+//   let logs = newMember.guild.channels.find(x => x.name === "logs");
+//   const game = "Fortnite";
 
-  if (!logs) {
-    return;
-  }
+//   if (!logs) {
+//     return;
+//   }
 
-  if (newMember.presence.game.name === "Fortnite") {
-    if (!newMember.guild.member(client.user).hasPermission("BAN_MEMBERS")) {
-      return logs.send(
-        `I do not have the **Ban Members** permission in this server. I probably should though because ${newMember.user} is playing ${game}`
-      );
-    }
+//   if (newMember.presence.game.name === "Fortnite") {
+//     if (!newMember.guild.member(client.user).hasPermission("BAN_MEMBERS")) {
+//       return logs.send(
+//         `I do not have the **Ban Members** permission in this server. I probably should though because ${newMember.user} is playing ${game}`
+//       );
+//     }
 
-    return newMember
-      .ban()
-      .then(() => {
-        let logs = newMessage.guild.channels.find(x => x.name === "logs");
+//     return newMember
+//       .ban()
+//       .then(() => {
+//         let logs = newMessage.guild.channels.find(x => x.name === "logs");
 
-        let embed = new Discord.RichEmbed()
-          .setColor("#FF0000")
-          .setTitle("User Banned")
-          .addField(
-            "Banned User: ",
-            `${newMember.user}, ID ${NewMember.user.id}`
-          )
-          .addField("Reason: ", `Playing ${game}`)
-          .setTimestamp();
+//         let embed = new Discord.RichEmbed()
+//           .setColor("#FF0000")
+//           .setTitle("User Banned")
+//           .addField(
+//             "Banned User: ",
+//             `${newMember.user}, ID ${NewMember.user.id}`
+//           )
+//           .addField("Reason: ", `Playing ${game}`)
+//           .setTimestamp();
 
-        logs.send({ embed });
-      })
-      .catch(console.error);
-  }
-});
+//         logs.send({ embed });
+//       })
+//       .catch(console.error);
+//   }
+// });
 
 client.on("message", async message => {
   let ops = {
