@@ -1,11 +1,9 @@
-const config = require("./config.json");
 const Discord = require("discord.js");
 const fs = require("fs");
+require("dotenv").config();
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
-
-const { token, prefix } = config;
 
 const ownerID = "197955018828152833";
 const active = new Map();
@@ -197,14 +195,14 @@ client.on("message", async message => {
   let command = messageArray[0];
   let args = messageArray.slice(1);
 
-  if (!command.startsWith(prefix)) {
+  if (!command.startsWith(process.env.BOT_PREFIX)) {
     return;
   }
 
-  let cmd = client.commands.get(command.slice(prefix.length));
+  let cmd = client.commands.get(command.slice(process.env.BOT_PREFIX.length));
   if (cmd) {
     cmd.run(client, message, args, ops);
   }
 });
 
-client.login(token);
+client.login(process.env.BOT_TOKEN);
